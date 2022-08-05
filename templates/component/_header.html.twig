@@ -9,7 +9,11 @@
     </ul>
 
     <div class="col-md-3 text-end">
+        {% if app.user %}
+        <a href="{{ path ('app_logout') }}" type="button" class="btn btn-outline-primary me-2">Logout</a>
+        {% else %}
         <a href="{{ path ('app_login') }}" type="button" class="btn btn-outline-primary me-2">Login</a>
+        {% endif %}
         <button type="button" class="btn btn-primary">Sign-up</button>
     </div>
 </header>
