@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -39,6 +41,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private ?int $phonenumber = null;
+
+    #[ORM\OneToMany(mappedBy: 'vendor', targetEntity: Craiglist::class)]
+    private Collection $craiglists;
+
+    public function __construct()
+    {
+        $this->craiglists = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -154,6 +164,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPhonenumber(int $phonenumber): self
     {
         $this->phonenumber = $phonenumber;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Craiglist>
+     */
+    public function getCraiglists(): Collection
+    {
+        return $this->craiglists;
+    }
+
+    public function addCraiglist(Craiglist $craiglist): self
+    {
+        if (!$this->craiglists->contains($craiglist)) {
+            $this->craiglists->add($craiglist);
+            $craiglist->setVendor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCraiglist(Craiglist $craiglist): self
+    {
+        if ($this->craiglists->removeElement($craiglist)) {
+            // set the owning side to null (unless already changed)
+            if ($craiglist->getVendor() === $this) {
+                $craiglist->setVendor(null);
+            }
+        }
 
         return $this;
     }
