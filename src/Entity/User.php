@@ -36,9 +36,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $firstname = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $profilpicture = null;
-
     #[ORM\Column]
     private ?int $phonenumber = null;
 
@@ -140,18 +137,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setFirstname(string $firstname): self
     {
         $this->firstname = $firstname;
-
-        return $this;
-    }
-
-    public function getProfilpicture(): ?string
-    {
-        return $this->profilpicture;
-    }
-
-    public function setProfilpicture(?string $profilpicture): self
-    {
-        $this->profilpicture = $profilpicture;
 
         return $this;
     }
