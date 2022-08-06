@@ -25,7 +25,7 @@ Craiglist
     private ?string $picture = null;
 
     #[ORM\Column]
-    private ?int $zipcode = null;
+    private ?string $zipcode = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
@@ -74,12 +74,12 @@ Craiglist
         return $this;
     }
 
-    public function getZipcode(): ?int
+    public function getZipcode(): ?string
     {
         return $this->zipcode;
     }
 
-    public function setZipcode(int $zipcode): self
+    public function setZipcode(string $zipcode): self
     {
         $this->zipcode = $zipcode;
 

@@ -39,7 +39,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $firstname = null;
 
     #[ORM\Column]
-    private ?int $phonenumber = null;
+    private ?string $phonenumber = null;
 
     #[ORM\OneToMany(mappedBy: 'vendor', targetEntity: Craiglist::class)]
     private Collection $craiglists;
@@ -143,12 +143,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPhonenumber(): ?int
+    public function getPhonenumber(): ?string
     {
         return $this->phonenumber;
     }
 
-    public function setPhonenumber(int $phonenumber): self
+    public function setPhonenumber(string $phonenumber): self
     {
         $this->phonenumber = $phonenumber;
 
