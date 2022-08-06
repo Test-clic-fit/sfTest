@@ -16,6 +16,17 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/item', name: 'item_')]
 class ItemController extends AbstractController
 {
+    #[Route('/', name: 'index')]
+    public function index(CraiglistRepository $craiglistRepository): Response
+    {
+        $items = $craiglistRepository->findAll();
+
+        return $this->render('item/index.html.twig', [
+            'items' => $items,
+        ]);
+    }
+
+
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(Request $request, CraiglistRepository $craiglistRepository, FileUploader $fileUploader): Response
     {
