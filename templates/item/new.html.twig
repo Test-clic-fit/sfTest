@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ItemController!{% endblock %}
+
+{% block body %}
+    {{ form_start(itemForm) }}
+    {{ form_row(itemForm.title) }}
+    {{ form_row(itemForm.description) }}
+    {{ form_row(itemForm.zipcode) }}
+    {{ form_row(itemForm.picture) }}
+    {{ form_widget(itemForm) }}
+    <button type="submit" class="btn btn-primary">add</button>
+    {{ form_start(itemForm) }}
+{% endblock %}
