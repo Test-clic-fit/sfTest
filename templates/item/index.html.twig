@@ -12,7 +12,7 @@
                     <div class="card-body">
                         <h3 class="card-title">{{ item.title }}</h3>
                         <p class="card-text">{{ item.description|u.truncate(50, '...') }}</p>
-{#                        <a href="{{ path('app_item_show', {id:item.id}) }}" class="btn btn-primary">Plus de détails</a>#}
+                        <a href="{{ path('item_show', {id:item.id}) }}" class="btn btn-primary">More</a>
                     </div>
                 </div>
             {% endfor %}
