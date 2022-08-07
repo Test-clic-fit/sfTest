@@ -20,7 +20,7 @@
                     <input type="password" id="password" name="_password"
                            class="mb-3 form-control"/>
 
-                    <input type="hidden" name="_target_path" value="{{ path ('app_home') }}"/>
+                    <input type="hidden" name="_target_path" value="{{ path ('home_index') }}"/>
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                     <div class="w-100 d-flex justify-content-center">
                         <button type="submit" class="btn btn-primary">login</button>

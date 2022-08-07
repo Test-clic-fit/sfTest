@@ -17,15 +17,6 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/item', name: 'item_')]
 class ItemController extends AbstractController
 {
-    #[Route('/{id}', name: 'show')]
-    public function show(int $id,CraiglistRepository $craiglistRepository): Response
-    {
-        $item = $craiglistRepository->find($id);
-        return $this->render('item/show.html.twig', [
-            'item' => $item,
-        ]);
-    }
-
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(Request $request, CraiglistRepository $craiglistRepository, FileUploader $fileUploader): Response
     {
@@ -43,11 +34,20 @@ class ItemController extends AbstractController
             }
 
             $craiglistRepository->add($item, true);
-            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('home_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('item/new.html.twig', [
             'itemForm' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/{id}', name: 'show')]
+    public function show(int $id,CraiglistRepository $craiglistRepository): Response
+    {
+        $item = $craiglistRepository->find($id);
+        return $this->render('item/show.html.twig', [
+            'item' => $item,
         ]);
     }
 }

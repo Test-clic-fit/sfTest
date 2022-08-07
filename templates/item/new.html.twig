@@ -3,12 +3,21 @@
 {% block title %}Hello ItemController!{% endblock %}
 
 {% block body %}
-    {{ form_start(itemForm) }}
-    {{ form_row(itemForm.title) }}
-    {{ form_row(itemForm.description) }}
-    {{ form_row(itemForm.zipcode) }}
-    {{ form_row(itemForm.picture) }}
-    {{ form_widget(itemForm) }}
-    <button type="submit" class="btn btn-primary">add</button>
-    {{ form_start(itemForm) }}
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <h1 class="text-center">Add new item</h1>
+            <div class="col-6 d-flex flex-column align-items-center">
+                {{ form_start(itemForm) }}
+                {{ form_row(itemForm.title, {label: 'Title', attr : {class: 'mb-3 form-control'}}) }}
+                {{ form_row(itemForm.description, {label: 'Description', attr : {class: 'mb-3 form-control'}}) }}
+                {{ form_row(itemForm.zipcode, {label: 'Zip code', attr : {class: 'mb-3 form-control'}}) }}
+                {{ form_row(itemForm.picture, {label: 'Picture', attr : {class: 'mb-3 form-control'}}) }}
+                {{ form_widget(itemForm) }}
+                <div class="w-100 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+                {{ form_end(itemForm) }}
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -4,7 +4,9 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\DataTransformer\IntegerToLocalizedStringTransformer;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,7 +27,7 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Last name*',
                 'required' => 'This field is required',
             ])
-            ->add('phonenumber', TextType::class, [
+            ->add('phonenumber', IntegerType::class, [
                 'label' => 'phone numbers*',
                 'required' => 'This field is required',
             ])
