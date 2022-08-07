@@ -21,7 +21,6 @@ class ItemController extends AbstractController
     public function show(int $id,CraiglistRepository $craiglistRepository): Response
     {
         $item = $craiglistRepository->find($id);
-
         return $this->render('item/show.html.twig', [
             'item' => $item,
         ]);
