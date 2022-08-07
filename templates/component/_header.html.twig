@@ -1,11 +1,10 @@
 <header class="d-flex flex-wrap align-items-center justify-content-center py-3 mb-4 border-bottom">
 
     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="{{ path ('app_home') }}" class="nav-link px-2 link-secondary">Home</a></li>
+        <li><a href="{{ path ('home_index') }}" class="nav-link px-2 link-dark">Home</a></li>
         {% if app.user %}
         <li><a href="{{ path ('item_new') }}" class="nav-link px-2 link-dark">Add item</a></li>
         {% endif %}
-        <li><a href="{{ path ('item_index') }}" class="nav-link px-2 link-secondary">Show items</a></li>
     </ul>
 
     <div class="col-md-3 text-end">
