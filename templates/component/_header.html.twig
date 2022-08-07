@@ -1,0 +1,18 @@
+<header class="d-flex flex-wrap align-items-center justify-content-center py-3 mb-4 border-bottom">
+
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="{{ path ('home_index') }}" class="nav-link px-2 link-dark">Home</a></li>
+        {% if app.user %}
+        <li><a href="{{ path ('item_new') }}" class="nav-link px-2 link-dark">Add item</a></li>
+        {% endif %}
+    </ul>
+
+    <div class="col-md-3 text-end">
+        {% if app.user %}
+        <a href="{{ path ('app_logout') }}" type="button" class="btn btn-outline-primary me-2">Logout</a>
+        {% else %}
+        <a href="{{ path ('app_login') }}" type="button" class="btn btn-outline-primary me-2">Login</a>
+        {% endif %}
+        <a href="{{ path ('app_register') }}" type="button" class="btn btn-primary">Sign-up</a>
+    </div>
+</header>
