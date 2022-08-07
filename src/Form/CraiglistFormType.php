@@ -16,8 +16,14 @@ class CraiglistFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title', TextType::class)
-            ->add('description', TextType::class)
+            ->add('title', TextType::class, [
+                'label' => 'Title*',
+                'required' => 'This field is required',
+            ])
+            ->add('description', TextType::class, [
+                'label' => 'Description',
+                'required' => 'This field is required',
+            ])
             ->add('picture', FileType::class, [
                 'label' => 'Image',
                 'mapped' => false,
@@ -34,7 +40,10 @@ class CraiglistFormType extends AbstractType
                     ])
                 ],
             ])
-            ->add('zipcode', IntegerType::class);
+            ->add('zipcode', IntegerType::class, [
+                'label' => 'Zip code*',
+                'required' => 'This field is required',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -17,18 +17,14 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/item', name: 'item_')]
 class ItemController extends AbstractController
 {
-    #[Route('/', name: 'index')]
-    public function index(Request $request, CraiglistRepository $craiglistRepository, PaginatorInterface $paginator): Response
+    #[Route('/{id}', name: 'show')]
+    public function show(int $id,CraiglistRepository $craiglistRepository): Response
     {
-        $datas = $craiglistRepository->findAll();
-        $items = $paginator->paginate($datas,
-        $request->query->getInt('page', 1));
-
-        return $this->render('item/index.html.twig', [
-            'items' => $items,
+        $item = $craiglistRepository->find($id);
+        return $this->render('item/show.html.twig', [
+            'item' => $item,
         ]);
     }
-
 
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(Request $request, CraiglistRepository $craiglistRepository, FileUploader $fileUploader): Response
