@@ -6,6 +6,7 @@ use App\Entity\Craiglist;
 use App\Form\CraiglistFormType;
 use App\Repository\CraiglistRepository;
 use App\Service\FileUploader;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,9 +18,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class ItemController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(CraiglistRepository $craiglistRepository): Response
+    public function index(Request $request, CraiglistRepository $craiglistRepository, PaginatorInterface $paginator): Response
     {
-        $items = $craiglistRepository->findAll();
+        $datas = $craiglistRepository->findAll();
+        $items = $paginator->paginate($datas,
+        $request->query->getInt('page', 1));
 
         return $this->render('item/index.html.twig', [
             'items' => $items,
